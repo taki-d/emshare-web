@@ -2,3 +2,4 @@
 /flow-typed/
 .DS_Store
 /dist/index.js
+/dist/index.html

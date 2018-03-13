@@ -1,0 +1,40 @@
+{
+  "name": "emshare-web",
+  "version": "0.0.1",
+  "description": "your emo & music share!",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development --module-bind js=babel-loader",
+    "build": "webpack --mode production --module-bind js=babel-loader"
+  },
+  "author": "takeru haysaka",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "base64-font-loader": "^0.0.4",
+    "css-loader": "^0.28.10",
+    "material-ui": "^0.20.0",
+    "react": "^16.2.0",
+    "react-color": "^2.14.0",
+    "react-dom": "^16.2.0",
+    "react-tap-event-plugin": "^3.0.2",
+    "style-loader": "^0.20.3",
+    "webpack": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.2",
+    "babel-loader": "^7.1.4",
+    "eslint": "^4.18.2",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-react": "^7.7.0",
+    "flow-bin": "^0.67.1",
+    "flow-typed": "^2.3.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.0.6",
+    "path": "^0.12.7",
+    "webpack-cli": "^2.0.11"
+  }
+}

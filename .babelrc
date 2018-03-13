@@ -1,0 +1,15 @@
+{
+  "presets": [
+        "react",
+        ["env", {
+            "targets": {
+                "browsers": "> 5%"
+            }
+        }]
+    ],
+    "plugins": [
+        "transform-object-rest-spread",
+        "transform-class-properties",
+    ],
+}
+
