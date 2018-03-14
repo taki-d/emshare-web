@@ -17,10 +17,19 @@ import {
 } from "material-ui/Card";
 
 type momentCardProps = {|
-  title: string,
-  video: ?any,
-  message: ?Array<string>
+  video: string,
+  name: string,
+  time: number,
+  icon: ?string
 |};
+
+const Unix_timestamp = (t) => {
+    var dt = new Date(t*1000);
+    var hr = dt.getHours();
+    var m = "0" + dt.getMinutes();
+    var s = "0" + dt.getSeconds();
+    return hr+ ':' + m.substr(-2) + ':' + s.substr(-2);  
+};
 
 class momentCard extends React.Component<momentCardProps, {}> {
   constructor(props) {
@@ -28,22 +37,24 @@ class momentCard extends React.Component<momentCardProps, {}> {
   }
   render() {
     return (
-      <Card  style={{
+      <Card style={{
         marginLeft: 50,
         marginRight: 50,
         marginBottom: 30,
         paddingTop: 10,
         paddingBottom: 10
       }}>
-        <CardHeader title={this.props.title} />
+        <CardHeader
+          title={this.props.name}
+          subtitle={Unix_timestamp()}
+          avatar={this.props.icon}
+        />
         <CardMedia>
           <Player
             playsInline
             src={this.props.video}
           />   
         </CardMedia>
-        <CardTitle title="Card title" subtitle="Card subtitle" />
-        <CardText>コメントが入るらしい</CardText>
         <CardActions>
           <FlatButton label="comment" />
           <FlatButton label="like" />

@@ -27,9 +27,8 @@ import {
 import Paper from "material-ui/Paper";
 import MomentCard from "./component/momentcard";
 
-const URLENDPOINT="http://localhost:8000"
-
-
+//const URLENDPOINT="http://localhost:8000"
+const API_ENDPOINT="https://3zeeqw5v91.execute-api.us-west-1.amazonaws.com/prod";
 type moment = {|
   id: number,
   video:any,
@@ -41,7 +40,8 @@ type moment = {|
 type AppState = {|
   edit_dialog_open:boolean,
   edit_dialog:string,
-  now_c_page:string
+  now_c_page:string,
+  getNewMoment:JSON
 |};
 
 const FloatingStyle = {
@@ -62,7 +62,8 @@ class App extends Component<> {
   state: AppState ={
     edit_dialog_open:false,
     edit_dialog:"",
-    now_c_page:"/"
+    now_c_page:"/",
+    getNewMoment:{}
   };
 
   handleAdd = () => {
@@ -70,9 +71,32 @@ class App extends Component<> {
       now_c_page:"/upload",
     });
     this.props.history.push('/upload');
-    };
+  };
 
+  getNewMomentList = (session, user, count) => {
+    (() => {
+      const onAddState = (data) =>{
+        console.log(data);
+        this.setState({
+          getNewMoment:JSON.parse(data),
+        });
+        console.log(data);
+      };
+      fetch(`${API_ENDPOINT}/select/list?session=${session}&user=${user}&count=${count}`,{
+        method: 'GET',
+      }).then(function(response) {
+        return response.json();
+      }).then(function(json) {
+        console.log('Request successful', json);
+      });
+      
+    })();
+  };
   render = () => {
+    const {
+      getNewMoment,
+    } = this.state;
+    const momentList = getNewMoment["moments"];
     return (
       <div>
         <div style={{ margin: 8 }} >
@@ -81,8 +105,13 @@ class App extends Component<> {
               position: "relative",
             }}
           >
-            <MomentCard title={"hoge"} video={"path"}/>
-
+            {this.getNewMomentList(3490840, 35480, 1)}
+            {
+              momentList&&momentList.map(({ moment }) =>(
+                <MomentCard name={moment["user"]["name"]} icon={moment["user"]["icon"]} video={moment["video"]} />
+              ))
+            }
+        
             <FloatingActionButton
               style={FloatingStyle}
               onClick={this.handleAdd}
