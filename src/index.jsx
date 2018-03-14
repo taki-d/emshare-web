@@ -78,7 +78,7 @@ class App extends Component<> {
       const onAddState = (data) =>{
         console.log(data);
         this.setState({
-          getNewMoment:JSON.parse(data),
+          getNewMoment:data,
         });
         console.log(data);
       };
@@ -87,9 +87,8 @@ class App extends Component<> {
       }).then(function(response) {
         return response.json();
       }).then(function(json) {
-        console.log('Request successful', json);
+        onAddState(json)
       });
-      
     })();
   };
   render = () => {
@@ -175,3 +174,29 @@ if (rootElement) {
     rootElement
   );
 }
+// (()=>(fetch(`https://3zeeqw5v91.execute-api.us-west-1.amazonaws.com/test/select/list?session=3490840&user=35480&count=1`,{
+//   method: 'GET',
+//   mode: 'cors',
+//   }).then(function(response) {
+//     console.log(response);
+//   return response.json();
+// }).then(function(json) {
+//   console.log('Request successful', json);
+// })))();
+
+// (()=>(fetch(`https://3zeeqw5v91.execute-api.us-west-1.amazonaws.com/test/select/list2?session=3490840&user=35480&count=1`,{
+//   method: 'GET',
+//   mode: 'cors',
+//   }).then(function(response) {
+//     console.log(response);
+//   })))();
+
+// fetch(`https://3zeeqw5v91.execute-api.us-west-1.amazonaws.com/test/select/list?session=3490840&user=35480&count=1`,{
+//     method: 'GET',
+//     mode: 'cors',
+//     headers: {
+//       "Access-Control-Allow-Origin":"*"
+//     },
+// }).then(function(response) {
+//   console.log(response);
+// })
